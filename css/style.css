@@ -130,6 +130,9 @@ nav ul li a:hover {
     flex-wrap: wrap;
 }
 
+section {
+    scroll-margin-top: 80px; /* ← IMPORTANTE: compensa el header en navegación por anclas */
+}
 /* Botones */
 .btn {
     display: inline-flex;
