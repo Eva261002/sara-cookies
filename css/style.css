@@ -4,12 +4,21 @@
     box-sizing: border-box;
 }
 
+:root {
+    --color-primary: #ffb6c1;
+    --color-secondary: #d2691e;
+    --color-text: #5a3921;
+    --color-light: #fff9f0;
+    --color-dark: #5a3921;
+    --whatsapp: #25D366;
+}
+
 body {
     font-family: 'Poppins', sans-serif;
     line-height: 1.6;
-    color: #5a3921;
-    background-color: #fff9f0;
-    padding-top: 80px; /* Exactamente la altura del header */
+    color: var(--color-text);
+    background-color: var(--color-light);
+    padding-top: 80px;
 }
 
 .container {
@@ -23,7 +32,7 @@ body {
     position: fixed;
     bottom: 25px;
     right: 25px;
-    background: #25D366;
+    background: var(--whatsapp);
     color: white;
     width: 60px;
     height: 60px;
@@ -45,8 +54,7 @@ body {
 
 /* Header Fijo */
 header {
-    background-color: #ffb6c1;
-    color: #5a3921;
+    background-color: var(--color-primary);
     padding: 1rem 0;
     box-shadow: 0 2px 10px rgba(90, 57, 33, 0.1);
     position: fixed;
@@ -55,7 +63,13 @@ header {
     right: 0;
     z-index: 999;
     transition: all 0.3s ease;
-    height: 80px; /* Altura fija */
+    height: 80px;
+}
+
+header.scrolled {
+    background-color: rgba(255, 182, 193, 0.95);
+    backdrop-filter: blur(10px);
+    padding: 0.7rem 0;
 }
 
 .header-content {
@@ -68,17 +82,17 @@ header {
 .logo {
     display: flex;
     align-items: center;
+    font-size: 2rem;
+    color: var(--color-text);
 }
 
 .logo-icon {
-    font-size: 2rem;
     margin-right: 10px;
-    color: #d2691e;
+    color: var(--color-secondary);
 }
 
 .logo-text {
     font-family: 'Dancing Script', cursive;
-    font-size: 2.2rem;
     font-weight: 700;
 }
 
@@ -88,31 +102,29 @@ nav ul {
     gap: 2rem;
 }
 
-nav ul li a {
-    color: #5a3921;
+nav a {
+    color: var(--color-text);
     text-decoration: none;
     font-weight: 500;
     transition: color 0.3s;
 }
 
-nav ul li a:hover {
-    color: #d2691e;
+nav a:hover {
+    color: var(--color-secondary);
 }
 
-/* Hero Section - Sin márgenes especiales */
+/* Hero Section */
 .hero {
-    background: linear-gradient(rgba(255, 182, 193, 0.9), rgba(255, 182, 193, 0.9)), url('../imagenes/hero-bg.jpg') center/cover;
-    color: #5a3921;
+    background: linear-gradient(rgba(255, 182, 193, 0.9), rgba(255, 182, 193, 0.9));
+    color: var(--color-text);
     text-align: center;
-    padding: 4rem 1rem; /* Padding normal */
+    padding: 4rem 1rem;
 }
 
 .hero h1 {
     font-family: 'Dancing Script', cursive;
-    font-size: 3.5rem;
+    font-size: clamp(2.5rem, 5vw, 3.5rem);
     margin-bottom: 1rem;
-    padding-top: 0;
-    margin-top: 0;
 }
 
 .hero p {
@@ -131,8 +143,9 @@ nav ul li a:hover {
 }
 
 section {
-    scroll-margin-top: 80px; /* ← IMPORTANTE: compensa el header en navegación por anclas */
+    scroll-margin-top: 80px;
 }
+
 /* Botones */
 .btn {
     display: inline-flex;
@@ -149,7 +162,7 @@ section {
 }
 
 .btn-whatsapp {
-    background: #25D366;
+    background: var(--whatsapp);
     color: white;
 }
 
@@ -160,8 +173,8 @@ section {
 }
 
 .btn-secondary {
-    background: #ffb6c1;
-    color: #5a3921;
+    background: var(--color-primary);
+    color: var(--color-text);
 }
 
 .btn-secondary:hover {
@@ -174,23 +187,27 @@ section {
     font-size: 1.1rem;
 }
 
-/* Galería */
-.galeria {
+/* Secciones comunes */
+.section {
     padding: 4rem 0;
-    background: white;
 }
 
-.galeria h2 {
+.section h2 {
     text-align: center;
-    font-size: 2.5rem;
+    font-size: clamp(2rem, 4vw, 2.5rem);
     margin-bottom: 1rem;
-    color: #d2691e;
+    color: var(--color-secondary);
 }
 
-.galeria > .container > p {
+.section > .container > p {
     text-align: center;
     margin-bottom: 3rem;
     color: #7f6b5e;
+}
+
+/* Galería */
+.galeria {
+    background: white;
 }
 
 .grid-galeria {
@@ -230,7 +247,7 @@ section {
 
 .btn-inspiracion {
     background: rgba(255, 255, 255, 0.9);
-    color: #5a3921;
+    color: var(--color-text);
     border: none;
     padding: 0.8rem 1.5rem;
     border-radius: 25px;
@@ -246,28 +263,20 @@ section {
 
 .cta-galeria {
     text-align: center;
-    background: #fff9f0;
+    background: var(--color-light);
     padding: 2rem;
     border-radius: 15px;
-    border: 2px dashed #ffb6c1;
+    border: 2px dashed var(--color-primary);
 }
 
 .cta-galeria h3 {
-    color: #d2691e;
+    color: var(--color-secondary);
     margin-bottom: 0.5rem;
 }
 
 /* Proceso */
 .proceso {
-    padding: 4rem 0;
-    background: #fff9f0;
-}
-
-.proceso h2 {
-    text-align: center;
-    font-size: 2.5rem;
-    margin-bottom: 3rem;
-    color: #d2691e;
+    background: var(--color-light);
 }
 
 .pasos {
@@ -291,8 +300,8 @@ section {
     top: -15px;
     left: 50%;
     transform: translateX(-50%);
-    background: #ffb6c1;
-    color: #5a3921;
+    background: var(--color-primary);
+    color: var(--color-text);
     width: 30px;
     height: 30px;
     border-radius: 50%;
@@ -304,30 +313,13 @@ section {
 
 .paso i {
     font-size: 3rem;
-    color: #ffb6c1;
+    color: var(--color-primary);
     margin-bottom: 1rem;
-}
-
-.paso h3 {
-    color: #5a3921;
-    margin-bottom: 1rem;
-}
-
-.proceso-cta {
-    text-align: center;
 }
 
 /* Precios */
 .precios {
-    padding: 4rem 0;
     background: white;
-}
-
-.precios h2 {
-    text-align: center;
-    font-size: 2.5rem;
-    margin-bottom: 3rem;
-    color: #d2691e;
 }
 
 .precios-grid {
@@ -340,20 +332,15 @@ section {
 .precio-item {
     text-align: center;
     padding: 2rem;
-    background: #fff9f0;
+    background: var(--color-light);
     border-radius: 15px;
-    border: 2px solid #ffb6c1;
-}
-
-.precio-item h3 {
-    color: #5a3921;
-    margin-bottom: 1rem;
+    border: 2px solid var(--color-primary);
 }
 
 .precio {
     font-size: 2rem;
     font-weight: bold;
-    color: #d2691e;
+    color: var(--color-secondary);
     margin-bottom: 0.5rem;
 }
 
@@ -365,8 +352,8 @@ section {
 
 /* Footer */
 footer {
-    background: #5a3921;
-    color: #fff9f0;
+    background: var(--color-dark);
+    color: var(--color-light);
     padding: 3rem 0 1.5rem;
 }
 
@@ -378,20 +365,412 @@ footer {
 }
 
 .footer-section h3 {
-    color: #ffb6c1;
+    color: var(--color-primary);
     margin-bottom: 1rem;
 }
 
 .contact-link {
     display: block;
-    color: #fff9f0;
+    color: var(--color-light);
     text-decoration: none;
     margin-bottom: 0.5rem;
     transition: color 0.3s;
 }
 
 .contact-link:hover {
-    color: #ffb6c1;
+    color: var(--color-primary);
+}
+
+.copyright {
+    text-align: center;
+    padding-top: 1.5rem;
+    border-top: 1px solid #7f6b5e;
+    color: #bdc3c7;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --color-primary: #ffb6c1;
+    --color-secondary: #d2691e;
+    --color-text: #5a3921;
+    --color-light: #fff9f0;
+    --color-dark: #5a3921;
+    --whatsapp: #25D366;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    line-height: 1.6;
+    color: var(--color-text);
+    background-color: var(--color-light);
+    padding-top: 80px;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* WhatsApp Float Button */
+.whatsapp-float {
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+    background: var(--whatsapp);
+    color: white;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    text-decoration: none;
+    box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4);
+    z-index: 1000;
+    transition: all 0.3s ease;
+}
+
+.whatsapp-float:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 25px rgba(37, 211, 102, 0.6);
+}
+
+/* Header Fijo */
+header {
+    background-color: var(--color-primary);
+    padding: 1rem 0;
+    box-shadow: 0 2px 10px rgba(90, 57, 33, 0.1);
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 999;
+    transition: all 0.3s ease;
+    height: 80px;
+}
+
+header.scrolled {
+    background-color: rgba(255, 182, 193, 0.95);
+    backdrop-filter: blur(10px);
+    padding: 0.7rem 0;
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    font-size: 2rem;
+    color: var(--color-text);
+}
+
+.logo-icon {
+    margin-right: 10px;
+    color: var(--color-secondary);
+}
+
+.logo-text {
+    font-family: 'Dancing Script', cursive;
+    font-weight: 700;
+}
+
+nav ul {
+    display: flex;
+    list-style: none;
+    gap: 2rem;
+}
+
+nav a {
+    color: var(--color-text);
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s;
+}
+
+nav a:hover {
+    color: var(--color-secondary);
+}
+
+/* Hero Section */
+.hero {
+    background: linear-gradient(rgba(255, 182, 193, 0.9), rgba(255, 182, 193, 0.9));
+    color: var(--color-text);
+    text-align: center;
+    padding: 4rem 1rem;
+}
+
+.hero h1 {
+    font-family: 'Dancing Script', cursive;
+    font-size: clamp(2.5rem, 5vw, 3.5rem);
+    margin-bottom: 1rem;
+}
+
+.hero p {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.hero-buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+section {
+    scroll-margin-top: 80px;
+}
+
+/* Botones */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 1rem 2rem;
+    border: none;
+    border-radius: 30px;
+    text-decoration: none;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 1rem;
+}
+
+.btn-whatsapp {
+    background: var(--whatsapp);
+    color: white;
+}
+
+.btn-whatsapp:hover {
+    background: #128C7E;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(37, 211, 102, 0.4);
+}
+
+.btn-secondary {
+    background: var(--color-primary);
+    color: var(--color-text);
+}
+
+.btn-secondary:hover {
+    background: #ff9aad;
+    transform: translateY(-2px);
+}
+
+.btn.large {
+    padding: 1.2rem 2.5rem;
+    font-size: 1.1rem;
+}
+
+/* Secciones comunes */
+.section {
+    padding: 4rem 0;
+}
+
+.section h2 {
+    text-align: center;
+    font-size: clamp(2rem, 4vw, 2.5rem);
+    margin-bottom: 1rem;
+    color: var(--color-secondary);
+}
+
+.section > .container > p {
+    text-align: center;
+    margin-bottom: 3rem;
+    color: #7f6b5e;
+}
+
+/* Galería */
+.galeria {
+        text-align: center;
+    background: white;
+}
+
+.grid-galeria {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 3rem;
+}
+
+.item-galeria {
+    position: relative;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
+}
+
+.item-galeria:hover {
+    transform: translateY(-5px);
+}
+
+.item-galeria img {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+}
+
+.overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(transparent, rgba(0,0,0,0.7));
+    padding: 2rem 1rem 1rem;
+    text-align: center;
+}
+
+.btn-inspiracion {
+    background: rgba(255, 255, 255, 0.9);
+    color: var(--color-text);
+    border: none;
+    padding: 0.8rem 1.5rem;
+    border-radius: 25px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-inspiracion:hover {
+    background: white;
+    transform: scale(1.05);
+}
+
+.cta-galeria {
+    text-align: center;
+    background: var(--color-light);
+    padding: 2rem;
+    border-radius: 15px;
+    border: 2px dashed var(--color-primary);
+}
+
+.cta-galeria h3 {
+    color: var(--color-secondary);
+    margin-bottom: 0.5rem;
+}
+
+/* Proceso */
+.proceso {
+    text-align: center;
+    background: var(--color-light);
+}
+
+.pasos {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    margin-bottom: 3rem;
+}
+
+.paso {
+    text-align: center;
+    padding: 2rem 1rem;
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    position: relative;
+}
+
+.paso-numero {
+    position: absolute;
+    top: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--color-primary);
+    color: var(--color-text);
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+}
+
+.paso i {
+    font-size: 3rem;
+    color: var(--color-primary);
+    margin-bottom: 1rem;
+}
+
+/* Precios */
+.precios {
+    background: white;
+}
+
+.precios-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    margin-bottom: 1rem;
+}
+
+.precio-item {
+    text-align: center;
+    padding: 2rem;
+    background: var(--color-light);
+    border-radius: 15px;
+    border: 2px solid var(--color-primary);
+}
+
+.precio {
+    font-size: 2rem;
+    font-weight: bold;
+    color: var(--color-secondary);
+    margin-bottom: 0.5rem;
+}
+
+.precio-nota {
+    text-align: center;
+    color: #7f6b5e;
+    font-style: italic;
+}
+
+/* Footer */
+footer {
+    background: var(--color-dark);
+    color: var(--color-light);
+    padding: 3rem 0 1.5rem;
+}
+
+.footer-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+
+.footer-section h3 {
+    color: var(--color-primary);
+    margin-bottom: 1rem;
+}
+
+.contact-link {
+    display: block;
+    color: var(--color-light);
+    text-decoration: none;
+    margin-bottom: 0.5rem;
+    transition: color 0.3s;
+}
+
+.contact-link:hover {
+    color: var(--color-primary);
 }
 
 .copyright {
@@ -412,10 +791,6 @@ footer {
         gap: 1rem;
     }
     
-    .hero h1 {
-        font-size: 2.5rem;
-    }
-    
     .hero-buttons {
         flex-direction: column;
         align-items: center;
@@ -425,5 +800,9 @@ footer {
         width: 100%;
         max-width: 300px;
         justify-content: center;
+    }
+    
+    .section {
+        padding: 3rem 0;
     }
 }
