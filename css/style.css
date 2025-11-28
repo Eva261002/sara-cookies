@@ -9,7 +9,7 @@ body {
     line-height: 1.6;
     color: #5a3921;
     background-color: #fff9f0;
-    padding-top: 80px;
+    padding-top: 80px; /* Exactamente la altura del header */
 }
 
 .container {
@@ -55,12 +55,14 @@ header {
     right: 0;
     z-index: 999;
     transition: all 0.3s ease;
+    height: 80px; /* Altura fija */
 }
 
 .header-content {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    height: 100%;
 }
 
 .logo {
@@ -97,19 +99,20 @@ nav ul li a:hover {
     color: #d2691e;
 }
 
-/* Hero Section */
+/* Hero Section - Sin márgenes especiales */
 .hero {
     background: linear-gradient(rgba(255, 182, 193, 0.9), rgba(255, 182, 193, 0.9)), url('../imagenes/hero-bg.jpg') center/cover;
     color: #5a3921;
     text-align: center;
-    padding: 6rem 1rem;
-    margin: -80px 0 2rem;
+    padding: 4rem 1rem; /* Padding normal */
 }
 
 .hero h1 {
     font-family: 'Dancing Script', cursive;
     font-size: 3.5rem;
     margin-bottom: 1rem;
+    padding-top: 0;
+    margin-top: 0;
 }
 
 .hero p {
