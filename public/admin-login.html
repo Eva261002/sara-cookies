@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Acceso Admin - Sara Cookies</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Dancing+Script:wght@500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #ffb6c1, #fff9f0);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        
+        .login-container {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(90, 57, 33, 0.2);
+            overflow: hidden;
+            max-width: 400px;
+            width: 100%;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .login-header {
+            background: linear-gradient(135deg, #ffb6c1, #ff9aad);
+            color: #5a3921;
+            padding: 30px;
+            text-align: center;
+        }
+        
+        .login-header i {
+            font-size: 3rem;
+            margin-bottom: 15px;
+        }
+        
+        .login-header h1 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+        
+        .login-content {
+            padding: 30px;
+        }
+        
+        .input-group {
+            margin-bottom: 20px;
+        }
+        
+        .input-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #5a3921;
+            font-weight: 500;
+        }
+        
+        .input-with-icon {
+            position: relative;
+        }
+        
+        .input-with-icon i {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #d2691e;
+        }
+        
+        .input-with-icon input {
+            width: 100%;
+            padding: 15px 15px 15px 45px;
+            border: 2px solid #eee;
+            border-radius: 10px;
+            font-size: 16px;
+            transition: all 0.3s;
+        }
+        
+        .input-with-icon input:focus {
+            outline: none;
+            border-color: #ffb6c1;
+            box-shadow: 0 0 0 3px rgba(255, 182, 193, 0.2);
+        }
+        
+        .btn-login {
+            background: linear-gradient(135deg, #d2691e, #b35917);
+            color: white;
+            border: none;
+            padding: 15px;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: 600;
+            width: 100%;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+        
+        .btn-login:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(210, 105, 30, 0.4);
+        }
+        
+        .login-footer {
+            text-align: center;
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+            color: #7f6b5e;
+            font-size: 0.9rem;
+        }
+        
+        .error-message {
+            background: #ffe6e6;
+            color: #cc0000;
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            text-align: center;
+            display: none;
+        }
+        
+        .mobile-note {
+            background: #fff9f0;
+            padding: 15px;
+            border-radius: 10px;
+            margin-top: 20px;
+            text-align: center;
+            border: 2px dashed #ffb6c1;
+        }
+        
+        .mobile-note i {
+            color: #d2691e;
+            margin-bottom: 10px;
+            font-size: 1.5rem;
+        }
+        
+        @media (max-width: 480px) {
+            .login-container {
+                border-radius: 15px;
+            }
+            
+            .login-header {
+                padding: 25px 20px;
+            }
+            
+            .login-header h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+    
+        <div class="login-header">
+            <i class="fas fa-cookie-bite"></i>
+            <h1>Sara Cookies</h1>
+            <p>Acceso Administrador</p>
+        </div>
+        <div class="login-content">
+            
+                        <!-- Botón de volver -->
+        <div style="text-align: center; margin-bottom: 20px;">
+            <a href="/public" style="color: #db1414; text-decoration: none; display: inline-flex; align-items: center; gap: 8px;">
+                <i class="fas fa-arrow-left"></i> Volver al sitio
+            </a>
+        </div>
+
+            <div id="errorMessage" class="error-message"></div>
+            
+            <form id="loginForm">
+                <div class="input-group">
+                    <label for="password">
+                        <i class="fas fa-key"></i> Contraseña de acceso
+                    </label>
+                    <div class="input-with-icon">
+                        <i class="fas fa-lock"></i>
+                        <input type="password" id="password" 
+                               placeholder="Ingresa la contraseña" 
+                               required autocomplete="off">
+                    </div>
+                </div>
+                
+                <button type="submit" class="btn-login">
+                    <i class="fas fa-sign-in-alt"></i> Ingresar al Panel
+                </button>
+            </form>
+            
+            <div class="mobile-note">
+                <i class="fas fa-mobile-alt"></i>
+                <p><strong>Desde tu celular:</strong> Puedes subir imágenes directamente desde aquí.</p>
+            </div>
+            
+            <div class="login-footer">
+                <p><i class="fas fa-info-circle"></i> Solo para administración del sitio</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const password = document.getElementById('password').value;
+            const errorDiv = document.getElementById('errorMessage');
+            
+            // Mostrar carga
+            const btn = this.querySelector('button');
+            const originalText = btn.innerHTML;
+            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Verificando...';
+            btn.disabled = true;
+            
+            try {
+                // Enviar la contraseña al servidor
+                const response = await fetch('/api/verify-admin', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ password: password })
+                });
+                
+                const result = await response.json();
+                
+                if (response.ok && result.success) {
+                    // Redirigir al panel admin
+                    window.location.href = '/admin-panel';
+                } else {
+                    // Mostrar error
+                    errorDiv.textContent = result.message || 'Contraseña incorrecta';
+                    errorDiv.style.display = 'block';
+                    
+                    // Efecto de error
+                    document.getElementById('password').style.borderColor = '#ff4444';
+                    setTimeout(() => {
+                        document.getElementById('password').style.borderColor = '';
+                    }, 1000);
+                }
+            } catch (error) {
+                errorDiv.textContent = 'Error de conexión';
+                errorDiv.style.display = 'block';
+            } finally {
+                // Restaurar botón
+                btn.innerHTML = originalText;
+                btn.disabled = false;
+            }
+        });
+        
+        // Focus en el input al cargar
+        document.getElementById('password').focus();
+        
+        // Limpiar error al empezar a escribir
+        document.getElementById('password').addEventListener('input', function() {
+            document.getElementById('errorMessage').style.display = 'none';
+        });
+    </script>
+</body>
+</html>

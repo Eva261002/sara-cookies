@@ -1,0 +1,14 @@
+{
+  "productos": [
+    {
+      "id": 1,
+      "nombre": "Nuevo Producto",
+      "categoria": "individuales",
+      "descripcion": "Descripción del producto",
+      "precio": 0,
+      "imagen": "/uploads/productos/navidad.jpg",
+      "unidad": "c/u",
+      "galeria": []
+    }
+  ]
+}

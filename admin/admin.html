@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel Admin - Sara Cookies</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- RUTA ABSOLUTA para CSS -->
+    <link rel="stylesheet" href="/admin/css/admin.css">
+    <style>
+        /* Estilos adicionales en línea por si acaso */
+        .loading {
+            text-align: center;
+            padding: 50px;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <div class="admin-container">
+        <div class="admin-header">
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+                <div>
+                    <h1><i class="fas fa-cookie-bite"></i> Sara Cookies - Panel</h1>
+                    <p>Gestiona tu galería desde cualquier dispositivo</p>
+                </div>
+                <button onclick="logout()" class="btn-logout">
+                    <i class="fas fa-sign-out-alt"></i> Salir
+                </button>
+            </div>
+        </div>
+        
+        <div class="admin-nav">
+            <ul>
+                <li><a href="#galeria" class="nav-link active" data-tab="galeria">
+                    <i class="fas fa-images"></i> Galería
+                </a></li>
+                <li><a href="#configuracion" class="nav-link" data-tab="configuracion">
+                    <i class="fas fa-user-cog"></i> Mi Cuenta
+                </a></li>
+            </ul>
+        </div>
+        
+        <div class="admin-content">
+            <!-- Mensajes -->
+            <div id="message" class="message"></div>
+            
+            <!-- Tab Galería -->
+            <div id="galeria-tab" class="tab-content active">
+                <h2><i class="fas fa-images"></i> Gestión de Galería</h2>
+                
+                <!-- Filtro de etiquetas -->
+                <div class="gallery-filter">
+                    <div class="filter-controls">
+                        <h4>Filtrar por etiqueta:</h4>
+                        <select id="filter-tag" onchange="filtrarPorEtiqueta()">
+                            <option value="todas">📁 Todas las imágenes</option>
+                            <option value="Navidad">🎄 Navidad</option>
+                            <option value="Halloween">🎃 Halloween</option>
+                            <option value="Temáticas Especiales">🎨 Temáticas Especiales</option>
+                            <option value="Personalizadas">✨ Personalizadas</option>
+                        </select>
+                        <span class="image-counter" id="image-counter">0 imágenes</span>
+                        <button class="btn btn-refresh" onclick="cargarImagenes()">
+                            <i class="fas fa-sync-alt"></i> Actualizar
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Área de subida -->
+                <div class="upload-section">
+                    <div class="upload-area" id="dropZone">
+                        <i class="fas fa-cloud-upload-alt fa-3x"></i>
+                        <input type="file" id="fileInput" accept="image/*" multiple>
+                        <p>Arrastra y suelta imágenes aquí</p>
+                        <p>o</p>
+                        <button class="btn btn-upload" onclick="document.getElementById('fileInput').click()">
+                            <i class="fas fa-folder-open"></i> Seleccionar Archivos
+                        </button>
+                        <p class="upload-info">
+                            <i class="fas fa-info-circle"></i> 
+                            Formatos: JPG, PNG, GIF, WebP • Máx. 5MB por imagen
+                        </p>
+                    </div>
+                </div>
+                
+                <!-- Contenedor de galería -->
+                <div id="gallery-container" class="gallery-grid">
+                    <div class="loading">
+                        <i class="fas fa-spinner fa-spin fa-2x"></i>
+                        <p>Cargando galería...</p>
+                    </div>
+                </div>
+            </div>
+
+                            <!-- Y agrega este tab-content después del de galería: -->
+        <div id="configuracion-tab" class="tab-content">
+            <h2><i class="fas fa-user-cog"></i> Configuración de Cuenta</h2>
+            
+            <div class="config-section">
+                <h3><i class="fas fa-key"></i> Cambiar Contraseña</h3>
+                <div id="password-message" class="message"></div>
+                
+                <div class="form-group">
+                    <label>Contraseña actual:</label>
+                    <input type="password" id="current-password" class="form-input">
+                </div>
+                
+                <div class="form-group">
+                    <label>Nueva contraseña:</label>
+                    <input type="password" id="new-password" class="form-input">
+                    <small class="form-help">Mínimo 6 caracteres</small>
+                </div>
+                
+                <div class="form-group">
+                    <label>Confirmar nueva contraseña:</label>
+                    <input type="password" id="confirm-password" class="form-input">
+                </div>
+                
+                <button class="btn btn-primary" onclick="cambiarContrasena()">
+                    <i class="fas fa-save"></i> Cambiar Contraseña
+                </button>
+            </div>
+            
+            <div class="config-section" style="margin-top: 30px;">
+                <h3><i class="fas fa-info-circle"></i> Información de Sesión</h3>
+                <p><strong>Estado:</strong> <span id="session-status" style="color: #28a745;">● Activa</span></p>
+                <p><strong>Imágenes en galería:</strong> <span id="total-images">0</span></p>
+                <button class="btn btn-secondary" onclick="cerrarSesion()">
+                    <i class="fas fa-sign-out-alt"></i> Cerrar Sesión
+                </button>
+            </div>
+        </div>
+        </div>
+        
+        <div class="admin-footer">
+            <p>Sara Cookies Admin v1.0 • <span id="current-date"></span></p>
+        </div>
+    </div>
+
+    <!-- RUTA ABSOLUTA para JavaScript -->
+    <script src="/admin/js/admin.js"></script>
+</body>
+</html>
